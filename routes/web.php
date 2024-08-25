@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Livewire\Auth\Login;
@@ -55,8 +56,10 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+//Route::middleware(['auth'])->group(function () {
+//    Route::get('/admin', function () {
+//        return view('dashboard');
+//    })->name('dashboard');
+//});
+
+Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
